@@ -21,6 +21,10 @@ router.get('/register', userController.getRegister);
 /* Login User. */
 router.post('/login', authController.login);
 /* Register User. */
-router.post('/register', authController.register);
+router.post('/register',
+    userController.validateRegister,
+    userController.registerUser,
+    authController.register
+);
 
 module.exports = router;
