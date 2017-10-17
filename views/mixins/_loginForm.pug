@@ -1,0 +1,16 @@
+mixin loginForm()
+  form.form(action="/login" method="POST")
+    table.table.table-condensed.table-responsive(style="border: none")
+      tr
+        td
+          label(for="email") Email
+        td
+          input(type="email" name="email" placeholder="Email Address").form-control
+      tr
+        td
+          label(for="password") Password
+        td
+          input(type="password" name="password" placeholder="Password").form-control
+      tr
+        td(colspan=2)
+          button.btn.btn-success.btn-lg(type="submit" name="Login") Login

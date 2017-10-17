@@ -11,9 +11,7 @@ router.get('/tasks', todoController.getAllTasks);
 /* GET Edit Task Page. */
 router.get('/tasks/:id/edit', todoController.editTask);
 /* GET Task By SLug. */
-router.get('/tasks/:id', todoController.getTaskBySLug);
-/* GET delete Task. */
-router.get('/tasks/:id/delete', todoController.deleteTask);
+router.get('/tasks/:id', todoController.getTaskBySlug);
 /* GET add new Task. */
 router.get('/add', todoController.addTask);
 /* GET login. */

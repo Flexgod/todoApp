@@ -2,10 +2,27 @@ doctype html
 html
   head
     title= `${title} | ${h.siteName}`
-    link(rel='stylesheet', href='/stylesheets/bootstrap-min.css')
+    link(rel='stylesheet', href='/stylesheets/bootstrap.min.css')
     link(rel='stylesheet', href='/stylesheets/starter-template.css')
     link(rel='stylesheet', href='/stylesheets/style.css')
     script(src='https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js')
-    script(src='/javascript/bootstrap.min.js')
+    script(src='/javascripts/bootstrap.min.js')
   body
-    block content
+    .container
+      nav.navbar.navbar-inverse.navbar-fixed-top
+        .container
+          .navbar-header
+            button.navbar-toggle
+            a.navbar-brand(href='/')= h.siteName
+          .collapse.navbar-collapse
+            ul.nav.navbar-nav
+              li
+                a(href="/tasks") My Tasks
+              li
+                a(href="/add") Add New
+            ul.nav.navbar-nav.navbar-right
+              li
+                a(href="/login") Login
+              li
+                a(href="/register") Register
+      block content

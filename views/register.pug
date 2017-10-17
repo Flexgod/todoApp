@@ -1,0 +1,10 @@
+extends layout
+
+include mixins/_registerForm
+
+block content
+
+  .container
+    h1=title
+    .row.text-center
+      +registerForm()
