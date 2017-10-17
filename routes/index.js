@@ -19,12 +19,12 @@ router.get('/login', userController.getLogin);
 /* GET register page. */
 router.get('/register', userController.getRegister);
 /* Login User. */
-router.post('/login', authController.login);
+router.post('/login', userController.getLogin);
 /* Register User. */
 router.post('/register',
     userController.validateRegister,
     userController.registerUser,
-    authController.register
+    authController.login
 );
 
 module.exports = router;

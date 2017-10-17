@@ -1,7 +1,8 @@
-exports.login = (req, res) => {
-    res.json(req.body);
-}
+const passport = require('passport');
 
-exports.register = (req, res) => {
-    res.json(req.body);
-}
+exports.login = passport.authenticate('local', {
+    failureRedirect: '/login',
+    failureFlash: 'Failed Login!',
+    successRedirect: '/',
+    successFlash: 'You are now logged in!'
+});
