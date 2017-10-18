@@ -1,11 +1,11 @@
 const mongoose = require('mongoose');
 const User = mongoose.model('User');
 const promisify = require('es6-promisify');
-
+//Controller to get login page
 exports.getLogin = (req, res) => {
     res.render('login', {title: 'Login'});
 }
-
+//Controller to get register page
 exports.getRegister = (req, res) => {
     res.render('register', {title: 'Register'});
 }
@@ -35,4 +35,8 @@ exports.registerUser = async (req, res, next) => {
     const registerWithPromise = promisify(User.register, User);
     await registerWithPromise(user, req.body.password);
     next()
+}
+//Controller to get user account
+exports.account = (req, res) => {
+    res.render('account', {title: 'Edit My Account'});
 }

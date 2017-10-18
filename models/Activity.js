@@ -11,11 +11,12 @@ const todoSchema = new mongoose.Schema({
         required: 'Please enter a todo Title!'
     },
     slug: String,
-    description: {
-        type: String,
-        trim: true
-    },
     todo: [String],
+    author: {
+        type: mongoose.Schema.ObjectId,
+        ref: 'User',
+        required: 'You must supply an author'
+    },
     created: {
         type: Date,
         defualt: Date.now
@@ -49,4 +50,4 @@ todoSchema.statics.getTodoList = function () {
     ]);
 }
 
-module.exports = mongoose.model('Store', todoSchema);
+module.exports = mongoose.model('Activity', todoSchema);

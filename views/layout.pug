@@ -17,13 +17,13 @@ html
           .collapse.navbar-collapse
             ul.nav.navbar-nav
               li
-                a(href="/tasks") My Tasks
-              li
                 a(href="/add") Add New
             ul.nav.navbar-nav.navbar-right
               if user
                 li
-                  a(href="/profile") My Account
+                   a(href="/tasks") My Tasks
+                li
+                  a(href="/account")= user.email
                 li
                   a(href="/logout") Logout
               else
@@ -38,7 +38,7 @@ html
               - const categories = Object.keys(locals.flashes)
               each category in categories
                 each message in flashes[category]
-                  .flash(class=`flash--${category}`)
+                  .flash(class=`alert alert-${category}`)
                     p.flash__text!= message
                     button.flash__remove(onClick="this.parentElement.remove()") &times;
       block content

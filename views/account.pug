@@ -1,0 +1,10 @@
+extends layout
+
+include mixins/_accountForm
+
+block content
+
+  .inner
+    h2= title
+    .row.text-center
+      +accountForm()

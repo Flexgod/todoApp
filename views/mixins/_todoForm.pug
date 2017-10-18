@@ -1,0 +1,6 @@
+mixin todoForm(todo = {})
+  form.form(method="POST")
+    .form-group
+      input(type="todo" name="title" placeholder="Todo").form-control
+    .formgroup
+      button.btn.btn-success.btn-lg(type="submit") Add Todo
