@@ -38,4 +38,6 @@ router.post('/add/:id', todoController.updateTodo);
 router.get('/delete/:id', todoController.deleteTodo);
 //Route to add activities to todo list
 router.post('/tasks/add/:id', todoController.addActivity);
+//Route to Update User Account
+router.post('/account', userController.updateAccount);
 module.exports = router;

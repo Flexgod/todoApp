@@ -40,3 +40,16 @@ exports.registerUser = async (req, res, next) => {
 exports.account = (req, res) => {
     res.render('account', {title: 'Edit My Account'});
 }
+//Controller to update user account
+exports.updateAccount = async (req, res) => {
+    const updates = {
+        email: req.body.email
+    };
+    const user = await User.findOneAndUpdate(
+        { _id: req.user._id },
+        { $set: updates },
+        { new: true, runValidators: true, context: 'query' }
+    );
+    req.flash('success', 'Updated Profile! Login to continue');
+    res.redirect('/');
+}

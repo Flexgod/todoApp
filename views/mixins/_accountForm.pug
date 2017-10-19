@@ -1,6 +1,6 @@
 mixin accountForm()
-  form.form(action="/login" method="POST")
+  form.form(action="/account" method="POST")
     .form-group
       input(type="email" name="email" placeholder="Email Address" value=`${user.email}`).form-control
     .formgroup
-      button.btn.btn-success.btn-lg(type="submit" name="Login") Update Account
+      button.btn.btn-success.btn-lg(type="submit") Update Account
