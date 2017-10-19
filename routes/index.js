@@ -11,7 +11,7 @@ router.get('/tasks', authController.isLoggedIn, todoController.getAllTasks);
 /* GET Edit Task Page. */
 router.get('/tasks/:id/edit', authController.isLoggedIn, todoController.editTask);
 /* GET Task By SLug. */
-router.get('/tasks/:id', authController.isLoggedIn, todoController.getTaskBySlug);
+router.get('/tasks/:slug', authController.isLoggedIn, todoController.getTaskBySlug);
 /* GET add new Task. */
 router.get('/add', authController.isLoggedIn, todoController.addTask);
 /* GET login. */
@@ -32,5 +32,10 @@ router.get('/logout', authController.logout);
 router.get('/account', authController.isLoggedIn ,userController.account);
 //Route to post new task
 router.post('/add', todoController.addNewTask);
-
+//Route to Update  tasks
+router.post('/add/:id', todoController.updateTodo);
+//Route to Delete  tasks
+router.get('/delete/:id', todoController.deleteTodo);
+//Route to add activities to todo list
+router.post('/tasks/add/:id', todoController.addActivity);
 module.exports = router;

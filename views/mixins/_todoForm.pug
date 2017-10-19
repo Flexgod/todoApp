@@ -1,6 +1,6 @@
 mixin todoForm(todo = {})
-  form.form(method="POST")
+  form.form(method="POST" action=`/add/${todo._id || ''}`)
     .form-group
-      input(type="todo" name="title" placeholder="Todo").form-control
+      input(type="text" name="title" placeholder="Task Title" value=todo.title).form-control
     .formgroup
-      button.btn.btn-success.btn-lg(type="submit") Add Todo
+      button.btn.btn-success.btn-lg(type="submit") Submit

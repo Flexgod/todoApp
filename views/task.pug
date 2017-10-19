@@ -1,0 +1,22 @@
+extends layout
+
+
+block content
+
+  .container
+    h1= todo.title
+    .row
+      .col-lg-12
+        .panel.panel-primary
+          .panel-heading
+            a(href=`/tasks/${todo._id}/edit` role="button").btn.btn-warning Edit Todo
+            a(href=`/tasks/${todo.slug}` role="button").btn.btn-success View Todo
+            a(href=`/delete/${todo._id}` role="button").btn.btn-danger Delete Todo
+          .panel-body Add Activity to Todo!
+            form.form(action=`/tasks/add/${todo._id}` method="POST")
+              .form-group
+                input(type="text" name="activity").form-control
+                button.btn.btn-primary(type="submit") Add Activity
+          ul.list-group
+            li.list-group-item activities
+

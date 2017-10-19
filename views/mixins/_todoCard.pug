@@ -1,6 +1,11 @@
 mixin todoCard(todo = {})
-  .item.col-xs-12.col-sm-4.col-md-4.col-lg-4
-    .thumbnail.itemthumbnail
-      img(src='../uploads/kkdk.png' alt="akin").group.list-group-image.itemimage
-      .caption
-        p.group.inner.list-group-item-text.itemtitle.cleafix.text-center Todo Name Here
+  if user && todo.author.equals(user._id)
+    .item.col-xs-12.col-sm-4.col-md-4.col-lg-4
+      .thumbnail.itemthumbnail
+        img(src='/images/todo.jpg' alt="akin").group.list-group-image.itemimage
+        .caption
+          p.group.inner.list-group-item-text.itemtitle.cleafix.text-center= todo.title
+          p.group.inner.list-group-item-text.itemtitle.cleafix.text-center
+            a(href=`/tasks/${todo._id}/edit` role="button").btn.btn-primary Edit Todo
+            a(href=`/tasks/${todo.slug}` role="button").btn.btn-success View Todo
+            a(href=`/delete/${todo._id}` role="button").btn.btn-danger Delete Todo
