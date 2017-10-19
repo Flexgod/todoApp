@@ -11,7 +11,7 @@ const todoSchema = new mongoose.Schema({
         required: 'Please enter a todo Title!'
     },
     slug: String,
-    todo: [String],
+    todoList: [String],
     author: {
         type: mongoose.Schema.ObjectId,
         ref: 'User',

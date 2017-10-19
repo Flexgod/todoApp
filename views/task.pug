@@ -15,8 +15,19 @@ block content
           .panel-body Add Activity to Todo!
             form.form(action=`/tasks/add/${todo._id}` method="POST")
               .form-group
+                input(type="hidden" name="id" value=`${todo._id}`)
+                input(type="hidden" name="slug" value=`${todo.slug}`)
                 input(type="text" name="activity").form-control
                 button.btn.btn-primary(type="submit") Add Activity
-          ul.list-group
-            li.list-group-item activities
+          table.table.table-bordered.table-hover.table-striped
+            if todo.todoList
+              each todoList in todo.todoList
+                tr
+                  td.text-danger= todoList
+                  td.text-danger(style="text-align: right")
+                    form.form(action="/tasks/activity/remove" method="POST")
+                      input(type="hidden" name="todo_slug" value=`${todo.slug}`)
+                      input(type="hidden" name="todo_id" value=`${todo._id}`)
+                      input(type="hidden" name="todo_activity" value=`${todoList}`)
+                      button(type="submit").btn.btn-danger.btn-xs delete
 

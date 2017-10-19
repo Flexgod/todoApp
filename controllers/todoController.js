@@ -19,10 +19,10 @@ exports.getAllTasks = async (req, res) => {
 }
 //COntroller to edit task
 exports.editTask = async (req, res) => {
-     // fetch id sent from the url and query db for store
-     const todo = await Todo.findOne({ _id: req.params.id }).populate('author');
-     todoOwner(todo, req.user);
-     res.render('editTodo', { title: `Edit ${todo.title}`, todo });
+    // fetch id sent from the url and query db for store
+    const todo = await Todo.findOne({ _id: req.params.id }).populate('author');
+    todoOwner(todo, req.user);
+    res.render('editTodo', { title: `Edit ${todo.title}`, todo });
 }
 //COntroller to get todo by slug
 exports.getTaskBySlug = async (req, res) => {
@@ -33,7 +33,7 @@ exports.getTaskBySlug = async (req, res) => {
         return;
     }
     todoOwner(todo, req.user);
-    res.render('task', {title: todo.title, todo});
+    res.render('task', { title: todo.title, todo });
 }
 //COntroller to handle add new task
 exports.addTask = (req, res) => {
@@ -44,7 +44,7 @@ exports.addNewTask = async (req, res) => {
     req.body.author = req.user._id;
     const todo = await (new Todo(req.body)).save();
     req.flash('success', `Successfully Created ${todo.title}.`);
-    res.redirect(`/task/${todo.slug}`);
+    res.redirect(`/tasks`);
 }
 //Controller to update tasks
 exports.updateTodo = async (req, res) => {
@@ -62,5 +62,31 @@ exports.deleteTodo = async (req, res) => {
 }
 //COntroller to add Activity to Tasks
 exports.addActivity = async (req, res) => {
-    res.json(req.body);
+    const todo = Todo.update(
+        { _id: req.body.id },
+        { $addToSet: { todoList: req.body.activity } }, function (err, todo) {
+            if (err) {
+                req.flash('error', 'Something went wrong. Please try again!');
+                res.redirect(`/tasks/${req.body.slug}`);
+            } else {
+                req.flash('success', 'New Activity Added to Todo!');
+                res.redirect(`/tasks/${req.body.slug}`);
+            }
+        }
+    );
+}
+//Controlloer to remove activites from the todo send activity
+exports.removeActivity = async (req, res) => {
+    const todo = await Todo.update(
+        { _id: req.body.todo_id },
+        { $pull: { todoList: req.body.todo_activity } }, function (err, todo) {
+            if (err) {
+                req.flash('error', 'Something went wrong. Please try again!');
+                res.redirect(`/tasks/${req.body.todo_slug}`);
+            } else {
+                req.flash('success', 'Activity Removed from Todo!');
+                res.redirect(`/tasks/${req.body.todo_slug}`);
+            }
+        }
+    );
 }

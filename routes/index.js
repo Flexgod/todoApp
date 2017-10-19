@@ -40,4 +40,6 @@ router.get('/delete/:id', todoController.deleteTodo);
 router.post('/tasks/add/:id', todoController.addActivity);
 //Route to Update User Account
 router.post('/account', userController.updateAccount);
+//Route to remove activities
+router.post('/tasks/activity/remove', todoController.removeActivity)
 module.exports = router;
