@@ -2,5 +2,10 @@ mixin todoForm(todo = {})
   form.form(method="POST" action=`/add/${todo._id || ''}`)
     .form-group
       input(type="text" name="title" placeholder="Task Title" value=todo.title).form-control
+    if todo.completed === false
+      .form-group
+        select.form-control(name="completed")
+          option(value="true") Completed
+          option(value="false") Pending
     .formgroup
       button.btn.btn-success.btn-lg(type="submit") Submit
